@@ -24,7 +24,7 @@ class _OtpSentScreenState extends State<OtpSentScreen> {
   void initState() {
     super.initState();
     final args = Get.arguments as Map<String, dynamic>? ?? {};
-    _email = args['email'] ?? 'your email';
+    _email = args['email']?.toString() ?? 'your email';
     _mode = args['mode'] ?? 'forgot_password';
     _startCountdown();
   }

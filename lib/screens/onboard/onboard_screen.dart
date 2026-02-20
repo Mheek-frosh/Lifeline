@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../core/theme/app_colors.dart';
+import '../../routes/app_routes.dart';
 
-class OnboardScreen extends StatelessWidget {
+class OnboardScreen extends StatefulWidget {
   const OnboardScreen({super.key});
+
+  @override
+  State<OnboardScreen> createState() => _OnboardScreenState();
+}
+
+class _OnboardScreenState extends State<OnboardScreen> {
+  final _emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +72,7 @@ class OnboardScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               _buildTextField(
+                controller: _emailController,
                 label: 'Email',
                 hint: 'Enter your email',
                 icon: Icons.email_outlined,
@@ -81,9 +96,10 @@ class OnboardScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    // TODO: Handle registration
-                  },
+                  onPressed: () => Get.toNamed(
+                    AppRoutes.enterOtp,
+                    arguments: {'mode': 'registration', 'email': _emailController.text},
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.deepNavy,
                     foregroundColor: Colors.white,
@@ -111,6 +127,7 @@ class OnboardScreen extends StatelessWidget {
   }
 
   Widget _buildTextField({
+    TextEditingController? controller,
     required String label,
     required String hint,
     required IconData icon,
@@ -118,6 +135,7 @@ class OnboardScreen extends StatelessWidget {
     bool obscureText = false,
   }) {
     return TextField(
+      controller: controller,
       obscureText: obscureText,
       keyboardType: keyboardType,
       decoration: InputDecoration(

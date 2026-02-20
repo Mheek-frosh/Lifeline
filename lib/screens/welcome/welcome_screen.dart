@@ -179,9 +179,7 @@ class WelcomeScreen extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: OutlinedButton(
-            onPressed: () {
-              // TODO: Navigate to login
-            },
+            onPressed: () => Get.toNamed(AppRoutes.signIn),
             style: OutlinedButton.styleFrom(
               foregroundColor: AppColors.deepNavy,
               side: const BorderSide(color: AppColors.border),
