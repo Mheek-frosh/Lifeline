@@ -27,4 +27,7 @@ class AppColors {
 
   /// Border
   static const Color border = Color(0xFFE2E8F0);
+
+  /// Dark section background (navy dark)
+  static const Color darkSection = Color(0xFF1A2D3D);
 }
